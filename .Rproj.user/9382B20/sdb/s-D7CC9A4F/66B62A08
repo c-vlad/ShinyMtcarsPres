@@ -1,0 +1,16 @@
+{
+    "contents" : "ShinyMtcars\n========================================================\nauthor: Cristian Vlad\ndate: 2014-10-12\ntransition: rotate\n\nDescription\n========================================================\nThe application aims to filter the mtcars dataset based on selections that the user makes in the left sidebar controls:\n- a slider on Miles Per Gallon\n- and a combo box on the number of carburetors, dynamically fed as result of slider's selection\n\n\nui.R\n========================================================\ntransition: fade\n\nThe page layout defined in the ui.R file is based on the function pageWithSidebar.\n\nIn order to populate the carburetors' combo box as a function of the mpg selected by the slider, the function used in this file is uiOutput.\n\n\nserver.R\n========================================================\n\nThe server.R file contains code to be evaluated server side.\n\nThe logic that it implements consists in two pieces:\n1. refreshes the carburetor's combo box in function of the selected mpg\n2. filters the mtcars dataset in function of the selection in the two controls on the left.\n\nThe combo box control is generated using the renderUI function, while the result table is rendered through the renderTable function.\n\n\nDynamic selection of the values in the combo box\n========================================================\n<small>\nThe values in the carburetors' combo box are filtered in function of the slider's vector of values.\n\nThe function used in this sense is \n\n```{r eval=FALSE}\ncarbs <- function(sliderMpg){\n    return(sort(unique(subset(mtcars, mpg >= sliderMpg[1] & mpg <= sliderMpg[2], carb))[,1]))\n}\n```\n\nFor example, for a slider value of c(20, 37) it returns\n```{r}\nsliderMpg <- c(20, 27)\nsort(unique(subset(mtcars, mpg >= sliderMpg[1] & mpg <= sliderMpg[2], carb))[,1])\n```\n</small>\n",
+    "created" : 1413072210736.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3509305913",
+    "id" : "66B62A08",
+    "lastKnownWriteTime" : 1413075103,
+    "path" : "C:/Dev/R/ShinyMtcarsPres/ShinyMtcarsPres.Rpres",
+    "project_path" : "ShinyMtcarsPres.Rpres",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_presentation"
+}
